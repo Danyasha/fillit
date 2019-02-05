@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:56 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 10:04:57 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 10:08:02 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void			ft_dlst_print_dlst(t_dlst *head)
 {
 	char	*s;
 
+	printf("printing list:\n");
 	if (head == NULL)
 	{
 		printf("NULL\n");
