@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:02:41 by btorp             #+#    #+#             */
-/*   Updated: 2019/01/27 15:44:37 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 09:18:24 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ typedef	struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
-
-typedef	struct	s_dls
-{
-	void			*content;
-	size_t			content_size;
-	struct s_dls	*next;
-	struct s_dls	*prev;
-}				t_dls;
 
 size_t			ft_strlcat(char *s1, char const *s2, size_t num);
 void			*ft_memmove(void *dst, const void *src, size_t n);

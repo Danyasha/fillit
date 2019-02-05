@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_del_all.c                                  :+:      :+:    :+:   */
+/*   dlst_test.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 08:02:49 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 09:28:25 by btorp            ###   ########.fr       */
+/*   Created: 2019/02/05 09:23:45 by btorp             #+#    #+#             */
+/*   Updated: 2019/02/05 09:24:32 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "dlst.h"
+#ifndef DLST_TEST_H
 
-static	t_dlst	*del_elem(t_dlst **elem)
-{
-	t_dlst	*temp;
-	t_dlst	*temp_next;
+# define DLST_TEST_H
+# include "../dlst.h"
 
-	temp = *elem;
-	temp_next = temp->next;
-	free(temp->tetra);
-	temp->prev = NULL;
-	free(temp);
-	return (temp_next);
-}
+void			ft_dlst_print_dlst(t_dlst *head);
 
-void			ft_dlst_del_all(t_dlst **head)
-{
-	t_dlst	*temp;
-
-	temp = *head;
-	while(temp->next)
-	{
-		temp = del_elem(&temp);
-	}
-	temp = del_elem(&temp);
-}
+#endif

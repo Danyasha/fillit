@@ -1,2 +1,5 @@
 .DS_store
 author
+a.out
+*.gch
+.vscode
