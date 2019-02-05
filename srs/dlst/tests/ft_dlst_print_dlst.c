@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:56 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 09:41:17 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 10:04:57 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void			ft_dlst_print_dlst(t_dlst *head)
 		printf("NULL\n");
 		return ;
 	}
-	s = head->tetra[0];
 	while(head)
 	{
+		s = head->tetra[0];
 		printf("Height = %i\nwight = %i\npriority = %i\ntetra:\n", head->height, head->width, head->priority);
 		for (int i = 1; s; i++)
 		{

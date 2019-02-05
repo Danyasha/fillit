@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:41:52 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 09:39:11 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 10:04:10 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int		main(void)
 	}
 	ft_dlst_print_dlst(head);
 	ft_dlst_del_all(&head);
-	ft_dlst_print_dlst(head);
+	//ft_dlst_print_dlst(head);
 
 }
