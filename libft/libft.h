@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:02:41 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 09:18:24 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 11:15:44 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,6 @@ char			*ft_strtoupper(char *s);
 char			*ft_strreplacechr(const char *src, char to, char what);
 int				ft_findch(char *s, char c);
 char			*ft_strjoinfree(char *s1, char *s2);
+int				get_next_line(const int fd, char **line);
+
 #endif

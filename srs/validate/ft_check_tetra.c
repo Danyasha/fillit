@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dls_add.c                                       :+:      :+:    :+:   */
+/*   ft_check_tetra.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 08:02:45 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 10:42:46 by btorp            ###   ########.fr       */
+/*   Created: 2019/02/05 12:18:59 by btorp             #+#    #+#             */
+/*   Updated: 2019/02/05 12:20:30 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "dlst.h"
-
-t_dlst			*ft_dlst_add(t_dlst **head, t_dlst *new_elem)
+int		ft_check_tetra(char **tetra)
 {
-	t_dlst	*temp;
-
-	temp = *head;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new_elem;
-	new_elem->prev = temp;
-	return (new_elem);
+	return (1);
 }

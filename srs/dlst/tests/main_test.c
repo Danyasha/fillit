@@ -6,22 +6,27 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:41:52 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 10:31:50 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 10:50:54 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dlst_test.h"
 
+#include <stdlib.h>
+
 static	char	**generator(int height, int width)
 {
 	char	**temp;
+	int		randnum;
 
 	temp = (char**)malloc(sizeof(char*) * (height + 1));
 	temp[height] = NULL;
+	randnum = 0 + rand() % 4;
 	for (int k = 0; k < height; k++)
 	{
 		temp[k] = ft_strnew(width);
 		temp[k] = ft_memset(temp[k], '.', width);
+		temp[k][randnum] = '#';
 	}
 	return (temp);
 }
@@ -34,6 +39,7 @@ int		main(void)
 	int		h;
 	int		w;
 
+	srand(time(NULL));
 	h = 4;
 	w = 4;
 	i = 1;
