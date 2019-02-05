@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:54 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 09:38:24 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 10:31:04 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	char	**copy(char **s, int width, int height)
 	char	**temp;
 	int		i;
 
-	temp = (char**)malloc(sizeof(char*) * height + 1);
+	temp = (char**)malloc(sizeof(char*) * (height + 1));
 	temp[height] = NULL;
 	i = 0;
 	while (i < height)
