@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 12:38:00 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/05 12:52:57 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,23 @@ static	int			check_string(char *line)
 	return (1);
 }
 
-static	t_dlst		*terminate(char	**lines, char *line, t_dlst *head);
+static	t_dlst		*terminate(char	**lines, char *line, t_dlst *head)
+{
+	int i;
+
+	i = 0;
+	while (lines[i])
+	{
+		free(lines[i]);
+		lines[i] = NULL;
+	}
+	free(lines);
+	lines = NULL;
+	free(line);
+	line = NULL;
+	ft_dlst_del_all(&head);
+	return (NULL);
+}
 
 t_dlst				*ft_validate_main(int fd)
 {
@@ -43,13 +59,14 @@ t_dlst				*ft_validate_main(int fd)
 		lines[4] = NULL;
 		get_next_line(fd, &line);
 		if (get_next_line(fd, &line) == 0 && count > 1 && count <= 26)
-			return (tetras);
+			return (tetras); // будет утечка lines и line
 		while (i < 4)
 		{
 			check_string(line);
-			if (get_next_line(fd, &line) <= 0 || !check_string(line))
+			if (get_next_line(fd, &line) <= 0 || !check_string(line) || count > 26)
 				return (terminate(lines, line, tetras));
 			lines[i] = ft_memcpy(lines[i], line, 5);
+			i++;
 		}
 		if (!ft_check_tetra(lines) || get_next_line(fd, &line) <= 0 || !ft_strlen(line))
 			return (terminate(lines, line, tetras));
