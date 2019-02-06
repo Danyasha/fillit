@@ -6,7 +6,7 @@
 /*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:45 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 10:42:46 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/06 11:52:02 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ t_dlst			*ft_dlst_add(t_dlst **head, t_dlst *new_elem)
 {
 	t_dlst	*temp;
 
+	if (*head == NULL)
+	{
+		*head = new_elem;
+		return (head);
+	}
 	temp = *head;
 	while (temp->next != NULL)
 		temp = temp->next;
