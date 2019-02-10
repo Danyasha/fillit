@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 18:25:06 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/10 19:29:02 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,24 @@ t_dlst				*ft_validate_main(int fd)
 	int		i;
 	int		count;
 
+	lines = (char**)malloc(sizeof(char*) * 5);
+	lines[4] = NULL;
 	count = 0;
-	while (1)
+	i = 0;
+	while (get_next_line(fd, &line))
 	{
-		i = 0;
-		lines = (char**)malloc(sizeof(char*) * 5);
-		lines[4] = NULL;
-		get_next_line(fd, &line);
-		if (get_next_line(fd, &line) == 0 && count >= 1 && count <= 26)
-			return (tetras); // будет утечка lines и line
-		while (i < 4)
+		if (i == 4 && ft_strncpy(line, "\n", 2) && ft_check_tetra(lines))
 		{
-			check_string(line);
-			if (get_next_line(fd, &line) <= 0 || !check_string(line) || count > 26)
-				return (terminate(lines, line, tetras));
-			lines[i] = ft_memcpy(lines[i], line, 5);
-			i++;
+			ft_add_tetra(&lines, &tetras);
+			i = 0;
+			count++;
 		}
-		if (!ft_check_tetra(lines) || get_next_line(fd, &line) <= 0 || !ft_strlen(line))
-			return (terminate(lines, line, tetras));
+		else if (check_string(line))
+			lines[i++] = line;
 		else
-			count += ft_add_tetra(lines, &tetras);	
+			return (NULL);
 	}
+	if (count > 0 && count < 25)
+		return (tetras);
+	return (NULL);
 }

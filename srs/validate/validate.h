@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
+/*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:13:47 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 18:25:07 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/10 21:13:34 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,18 @@ typedef	struct	s_tet
 	int	y2l;
 }				t_tet;
 
+typedef	struct	s_coords
+{
+	int	xtopl;
+	int	ytopl;
+	int	xdownr;
+	int	ydownr;
+}				t_coords;
+
+
 int		ft_check_tetra(char **tetra);
 t_dlst	*ft_validate_main(int fd);
-int		ft_add_tetra(char **lines, t_dlst **list);
+int		ft_add_tetra(char ***lines, t_dlst **list);
+void	ft_place_ints(int *d1, int *d2, int s1, int s2);
 
 #endif
