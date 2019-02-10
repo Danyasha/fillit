@@ -4,3 +4,6 @@ a.out
 *.gch
 .vscode
 a.out.dSYM
+.idea
+CMakeLists.txt
+cmake-build-debug
