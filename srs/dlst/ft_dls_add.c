@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dls_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
+/*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:45 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/06 11:52:02 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/10 18:35:37 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_dlst			*ft_dlst_add(t_dlst **head, t_dlst *new_elem)
 	if (*head == NULL)
 	{
 		*head = new_elem;
-		return (head);
+		return (*head);
 	}
 	temp = *head;
 	while (temp->next != NULL)
