@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate_main.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
+/*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/05 12:52:57 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/10 17:57:32 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_dlst				*ft_validate_main(int fd)
 		lines = (char**)malloc(sizeof(char*) * 5);
 		lines[4] = NULL;
 		get_next_line(fd, &line);
-		if (get_next_line(fd, &line) == 0 && count > 1 && count <= 26)
+		if (get_next_line(fd, &line) == 0 && count >= 1 && count <= 26)
 			return (tetras); // будет утечка lines и line
 		while (i < 4)
 		{

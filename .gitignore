@@ -3,3 +3,4 @@ author
 a.out
 *.gch
 .vscode
+a.out.dSYM
