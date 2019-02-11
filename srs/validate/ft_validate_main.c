@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 21:45:18 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/11 22:00:03 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static	int			check_string(char *line)
 static	t_dlst		*returnandfree(char ***lines, t_dlst **t)
 {
 	int	i;
-
 
 	i = 0;
 	if (*lines)
