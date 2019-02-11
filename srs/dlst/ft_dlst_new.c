@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:54 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 15:12:01 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/11 22:05:22 by pcollio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static	char	**copy(char **s, int width, int height)
 	i = 0;
 	while (i < height)
 	{
-		temp[i] = ft_strnew(width);
-		ft_memcpy(temp[i], s[i], width);
+		temp[i] = ft_strnew((size_t)width);
+		ft_memcpy(temp[i], s[i], (size_t)width);
 		free(s[i]);
 		s[i] = NULL;
 		i++;

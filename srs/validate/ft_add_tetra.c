@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:27:53 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 20:07:59 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/11 22:06:54 by pcollio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static	t_dlst	*gen_tet(char **lines, t_coords **c, int prior)
 	while (y < (*c)->ydownr - (*c)->ytopl + 1)
 	{
 		x = 0;
-		tetra[y] = ft_strnew((*c)->xdownr - (*c)->xtopl + 1);
+		tetra[y] = ft_strnew((size_t)(*c)->xdownr - (size_t)(*c)->xtopl + 1);
 		while (x < (*c)->xdownr - (*c)->xtopl + 1)//запись строки в новую строку и потом генерация
 		{
 			tetra[y][x] = lines[(*c)->ytopl + y][(*c)->xtopl + x];
