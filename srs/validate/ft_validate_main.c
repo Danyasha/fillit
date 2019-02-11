@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 19:29:02 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/11 20:27:06 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,41 @@ static	int			check_string(char *line)
 		return (0);
 	while (*line)
 	{
-		if (*line != '.' || *line != '#')
+		if (*line != '.' && *line != '#')
 			return (0);
 		line++;
 	}
 	return (1);
 }
 
-static	t_dlst		*terminate(char	**lines, char *line, t_dlst *head)
+static	t_dlst		*returnandfree(char **line, char ***lines, t_dlst **t)
 {
-	int i;
+	int	i;
+
 
 	i = 0;
-	while (lines[i])
+	if (*lines)
 	{
-		free(lines[i]);
-		lines[i] = NULL;
+		while ((*lines)[i])
+		{
+			free((*lines)[i]);
+			(*lines)[i] = NULL;
+			i++;
+		}
+		free(*lines);
+		*lines = NULL;
 	}
-	free(lines);
-	lines = NULL;
-	free(line);
-	line = NULL;
-	ft_dlst_del_all(&head);
-	return (NULL);
+	return (*t);
+}
+
+static	char		**makearray(size_t t)
+{
+	char	**s;
+	int		i;
+
+	s = (char**)malloc(sizeof(char*) * t);
+	s[t - 1] = NULL;
+	return (s);
 }
 
 t_dlst				*ft_validate_main(int fd)
@@ -49,26 +61,25 @@ t_dlst				*ft_validate_main(int fd)
 	char	*line;
 	t_dlst	*tetras;
 	int		i;
-	int		count;
 
-	lines = (char**)malloc(sizeof(char*) * 5);
-	lines[4] = NULL;
-	count = 0;
+	tetras = NULL;
+	lines = makearray(5);
 	i = 0;
 	while (get_next_line(fd, &line))
 	{
-		if (i == 4 && ft_strncpy(line, "\n", 2) && ft_check_tetra(lines))
-		{
-			ft_add_tetra(&lines, &tetras);
-			i = 0;
-			count++;
-		}
-		else if (check_string(line))
+		if (check_string(line))
 			lines[i++] = line;
 		else
 			return (NULL);
+		if (i == 4 && ft_check_tetra(lines))
+		{
+			ft_add_tetra(&lines, &tetras);
+			i = 0;
+			if (get_next_line(fd, &line) != 0 && line[0])
+				return (NULL);
+		}
 	}
-	if (count > 0 && count < 25)
-		return (tetras);
+	if (ft_dlst_find(tetras, 0) && !(ft_dlst_find(tetras, 26)) && line[0])
+		return (returnandfree(&line, &lines, &tetras));
 	return (NULL);
 }

@@ -6,14 +6,18 @@
 #    By: btorp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/10 16:47:44 by btorp             #+#    #+#              #
-#    Updated: 2019/02/10 16:49:31 by btorp            ###   ########.fr        #
+#    Updated: 2019/02/11 16:11:57 by btorp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRS = ../*.c
 CHECKTETRA = ../ft_check_tetra.c
 LIB = ../../../libft/*.c
-TESTS = *.c
-HEADERS = ../dlst/dlst.h ../../../libft/libft.h
-all:
-	gcc $(CHECKTETRA) $(LIB) $(TESTS) -I $(HEADERS) -g
+TETRA = test_check_tetra.c
+DLST = ../../dlst/*.c
+MAIN = ft_main_test.c
+SRS = ../*.c
+HEADERS = ../dlst/dlst.h ../../../libft/libft.h ../validate.h
+tetra:
+	gcc $(CHECKTETRA) $(LIB) $(TETRA) -I $(HEADERS) -g
+main:
+	gcc $(MAIN) $(SRS) $(DLST) $(LIB) -I $(HEADERS) -g

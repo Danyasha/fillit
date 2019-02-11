@@ -6,12 +6,33 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:54 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 18:38:09 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/11 15:12:01 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dlst.h"
-#include <string.h>
+
+static	void	replace(char **s, int prior)
+{
+	char	letter;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	letter = 65 + prior;
+	while (s[y])
+	{
+		x = 0;
+		while (s[y][x])
+		{
+			if (s[y][x] == '#')
+				s[y][x] = letter;
+			x++;
+		}
+		y++;
+	}
+}
 
 static	char	**copy(char **s, int width, int height)
 {
@@ -34,7 +55,6 @@ static	char	**copy(char **s, int width, int height)
 	return (temp);
 }
 
-
 t_dlst			*ft_dlst_new(char **tetra, int priority, int height, int width)
 {
 	t_dlst	*a;
@@ -43,6 +63,7 @@ t_dlst			*ft_dlst_new(char **tetra, int priority, int height, int width)
 		return (NULL);
 	a->tetra = copy(tetra, width, height);
 	a->priority = priority;
+	replace(a->tetra, priority);
 	a->height = height;
 	a->width = width;
 	a->next = NULL;

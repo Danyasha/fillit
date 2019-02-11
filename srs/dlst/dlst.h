@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   dlst.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
+/*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 07:26:10 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 18:25:07 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/11 15:03:54 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DLST_H
 
 # define DLST_H
+# define ASCII_A = 41
+
 # include "../../libft/libft.h"
 
 typedef	struct	s_dlst
