@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 20:27:06 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/11 21:45:18 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	int			check_string(char *line)
 	return (1);
 }
 
-static	t_dlst		*returnandfree(char **line, char ***lines, t_dlst **t)
+static	t_dlst		*returnandfree(char ***lines, t_dlst **t)
 {
 	int	i;
 
@@ -48,7 +48,6 @@ static	t_dlst		*returnandfree(char **line, char ***lines, t_dlst **t)
 static	char		**makearray(size_t t)
 {
 	char	**s;
-	int		i;
 
 	s = (char**)malloc(sizeof(char*) * t);
 	s[t - 1] = NULL;
@@ -80,6 +79,6 @@ t_dlst				*ft_validate_main(int fd)
 		}
 	}
 	if (ft_dlst_find(tetras, 0) && !(ft_dlst_find(tetras, 26)) && line[0])
-		return (returnandfree(&line, &lines, &tetras));
+		return (returnandfree(&lines, &tetras));
 	return (NULL);
 }
