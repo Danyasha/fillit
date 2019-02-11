@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:27:53 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 22:06:54 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/11 21:59:32 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,21 +110,21 @@ static	t_dlst	*gen_tet(char **lines, t_coords **c, int prior)
 	while (y < (*c)->ydownr - (*c)->ytopl + 1)
 	{
 		x = 0;
-		tetra[y] = ft_strnew((size_t)(*c)->xdownr - (size_t)(*c)->xtopl + 1);
-		while (x < (*c)->xdownr - (*c)->xtopl + 1)//запись строки в новую строку и потом генерация
+		tetra[y] = ft_strnew((size_t)(*c)->xdownr - (*c)->xtopl + 1);
+		while (x < (*c)->xdownr - (*c)->xtopl + 1)
 		{
 			tetra[y][x] = lines[(*c)->ytopl + y][(*c)->xtopl + x];
 			x++;
 		}
 		y++;
 	}
-	return(ft_dlst_new(tetra, prior, (*c)->ydownr - (*c)->ytopl + 1, (*c)->xdownr - (*c)->xtopl + 1));
+	return (ft_dlst_new(tetra, prior, \
+	(*c)->ydownr - (*c)->ytopl + 1, (*c)->xdownr - (*c)->xtopl + 1));
 }
 
 int				ft_add_tetra(char ***lines, t_dlst **list)
 {
 	t_tet		*tet;
-	char		**block;
 	t_coords	*coords;
 	static	int	i;
 	t_dlst		*temp;
@@ -134,7 +134,6 @@ int				ft_add_tetra(char ***lines, t_dlst **list)
 	find_firsts(*lines, tet);
 	find_seconds(*lines, tet);
 	tet_to_coords(&tet, coords);
-
 	temp = gen_tet(*lines, &coords, i);
 	ft_dlst_add(list, temp);
 	free(coords);
