@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtraking.h                                      :+:      :+:    :+:   */
+/*   map_gen_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 15:21:42 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 19:50:36 by btorp            ###   ########.fr       */
+/*   Created: 2019/02/12 21:29:44 by btorp             #+#    #+#             */
+/*   Updated: 2019/02/12 21:58:24 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BACKTRAKING_H
+#include "../backtraking.h"
 
-# define BACKTRAKING_H
-# include "../validate/validate.h"
-
-typedef	struct	s_map
+int	main(void)
 {
-	char			**map;
-	int				n;
-}				t_map;
-
-int		backtraking_main(t_dlst **head);
-t_map	*find_sol(t_map map, t_dlst temp, int x, int y);
-t_map	*map_gen(t_dlst *t);
-#endif
+	int		fd;
+	t_dlst	*head;
+	t_map	*map;
+	int		i;
+	fd = open("test.fillit", O_RDONLY);
+	head = ft_validate_main(fd);
+	if (head == NULL)
+	{
+		printf("INVALID FILE\n");
+		return (0);
+	}
+	map = map_gen(head);
+	i = 0;
+	printf("map->n = %i\n", map->n);
+	while(map->map[i] != NULL)
+	{
+		printf("%s\n", map->map[i]);
+		i++;
+	}
+	close(fd);
+}
