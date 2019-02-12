@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 20:27:06 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/12 14:41:21 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ static	int			check_string(char *line)
 	return (1);
 }
 
-static	t_dlst		*returnandfree(char **line, char ***lines, t_dlst **t)
+static	t_dlst		*returnandfree(char ***lines, t_dlst **t)
 {
 	int	i;
-
 
 	i = 0;
 	if (*lines)
@@ -48,11 +47,17 @@ static	t_dlst		*returnandfree(char **line, char ***lines, t_dlst **t)
 static	char		**makearray(size_t t)
 {
 	char	**s;
-	int		i;
 
 	s = (char**)malloc(sizeof(char*) * t);
 	s[t - 1] = NULL;
 	return (s);
+}
+
+static	void		shit(t_dlst **a, char ***b, int *c)
+{
+	*a = NULL;
+	*b = makearray(5);
+	*c = 0;
 }
 
 t_dlst				*ft_validate_main(int fd)
@@ -62,24 +67,24 @@ t_dlst				*ft_validate_main(int fd)
 	t_dlst	*tetras;
 	int		i;
 
-	tetras = NULL;
-	lines = makearray(5);
-	i = 0;
+	shit(&tetras, &lines, &i);
 	while (get_next_line(fd, &line))
 	{
 		if (check_string(line))
 			lines[i++] = line;
 		else
 			return (NULL);
-		if (i == 4 && ft_check_tetra(lines))
+		if (i == 4)
 		{
-			ft_add_tetra(&lines, &tetras);
-			i = 0;
+			if (ft_check_tetra(lines) && !(i = 0))
+				ft_add_tetra(&lines, &tetras);
+			else
+				return (NULL);
 			if (get_next_line(fd, &line) != 0 && line[0])
 				return (NULL);
 		}
 	}
 	if (ft_dlst_find(tetras, 0) && !(ft_dlst_find(tetras, 26)) && line[0])
-		return (returnandfree(&line, &lines, &tetras));
+		return (returnandfree(&lines, &tetras));
 	return (NULL);
 }
