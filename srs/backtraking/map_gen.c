@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:40:13 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 21:59:07 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/12 22:02:35 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ static	int	find_size_of_side(int s)
 	return (n);
 }
 
-t_map		*map_gen(t_dlst *t)
+t_map		*map_gen(t_dlst *t, int size)
 {
 	t_map	*map;
 	int		i;
 	int		k;
 
+	if (size == 0)
+		i = find_size_of_side(find_count(t) * 4);
+	else
+		i = size;
 	k = 0;
 	map = (t_map*)malloc(sizeof(t_map));
-	i = find_size_of_side(find_count(t) * 4);
 	map->map = (char**)(malloc(sizeof(char*) * i + 1));
 	map->map[i] = NULL;
 	while(k < i)
