@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:13:47 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 21:39:19 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:30:51 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "../dlst/dlst.h"
 # include "../../libft/libft.h"
-
+# include <fcntl.h>
 typedef	struct	s_tet
 {
 	int	x1f;
