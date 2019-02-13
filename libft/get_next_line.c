@@ -6,11 +6,11 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 03:36:50 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 21:39:12 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:10:36 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static	char		*gnlgetn(char **g)
 {

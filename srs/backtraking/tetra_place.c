@@ -6,8 +6,74 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:28:42 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 19:40:06 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/13 22:01:54 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "backtraking.h"
+
+static	char	find_letter(t_dlst *tet)
+{
+	int	i;
+	int	k;
+
+	k = 0;
+	while (k <= tet->height)
+	{
+		i = 0;
+		while (i <= tet->width)
+		{
+			if (tet->tetra[k][i] != '.')
+				return (tet->tetra[k][i]);
+			i++;
+		}
+		k++;
+	}
+	return ('0');
+}
+
+static	int		clean_map(t_map *map, t_dlst *tet, int x, int y)
+{
+	int		i;
+	int		k;
+	char	c;
+
+	k = 0;
+	c = find_letter(tet);
+	while (k <= tet->height - 1 && map->map[k + y])
+	{
+		i = 0;
+		while (i <= tet->width - 1 && map->map[k][i])
+		{
+			if (map->map[k + y][i + x] != c)
+				map->map[k + y][i + x] = '.';
+			i++;
+		}
+		k++;
+	}
+	return (0);
+}
+
+int				tetra_place(t_map *map, t_dlst *tet, int x, int y)
+{
+	int	i;
+	int	k;
+
+	k = 0;
+	while (k < tet->height)
+	{
+		if (!(map->map[k + y]))
+			return (clean_map(map, tet, x, y));
+		i = 0;
+		while (i < tet->width && i < map->n)
+		{
+			if (map->map[k + y][i + x] == '.')
+				map->map[k + y][i + x] = tet->tetra[k][i];
+			else
+				return (clean_map(map, tet, x, y));
+			i++;
+		}
+		k++;
+	}
+	return (1);
+}

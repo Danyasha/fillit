@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <btorp@42.fr>                        +#+  +:+       +#+        */
+/*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:02:41 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 18:25:06 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:13:06 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 500
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stddef.h>
+# include <fcntl.h>
+# include <string.h>
 
 typedef	struct	s_list
 {
@@ -25,6 +28,7 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+int				get_next_line(const int fd, char **line);
 size_t			ft_strlcat(char *s1, char const *s2, size_t num);
 void			*ft_memmove(void *dst, const void *src, size_t n);
 int				ft_atoi(const char *str);

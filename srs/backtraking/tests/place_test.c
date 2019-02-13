@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   place_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 21:19:04 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/13 15:12:05 by btorp            ###   ########.fr       */
+/*   Created: 2019/02/13 20:26:43 by btorp             #+#    #+#             */
+/*   Updated: 2019/02/13 20:58:01 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+#include "../backtraking.h"
+void print_map(char **c)
 {
-	size_t i;
+	int	i;
 
 	i = 0;
-	while (*(str1 + i) && *(str1 + i) == *(str2 + i) && i < n - 1)
-		i++;
-	if (n)
-		return (*((unsigned char *)str1 + i) - *((unsigned char *)str2 + i));
+	while(c[i])
+		printf("%s\n", c[i++]);
+}
+void	basic_test()
+{
+	int		fd;
+	t_dlst	*head;
+	t_map	*map;
+
+	fd = open("test.fillit", O_RDONLY);
+	head = ft_validate_main(fd);
+	map = map_gen(head, 3);
+	tetra_place(map, head, 1, 1);
+	print_map(map->map);
+}
+
+int	main()
+{
+	printf("BASIC TEST:\n");
+	basic_test();
+	printf("BASIC TEST IS OVER:\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:29:44 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 22:03:18 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/13 20:44:24 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(void)
 		printf("%s\n", map->map[i]);
 		i++;
 	}
-	map = map_gen(head, 4);
+	map = map_gen(head, 3);
 	i = 0;
 	printf("map->n = %i\n", map->n);
 	while(map->map[i] != NULL)
