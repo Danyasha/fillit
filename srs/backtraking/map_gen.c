@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:40:13 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 17:05:10 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 21:44:37 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_map			*map_gen(t_dlst *t, int size)
 		i = size;
 	k = 0;
 	map = (t_map*)malloc(sizeof(t_map));
-	map->map = (char**)(malloc(sizeof(char*) * i + 1));
+	map->map = (char**)(malloc(sizeof(char*) * (i + 1)));
 	map->map[i] = NULL;
 	while(k < i)
 	{

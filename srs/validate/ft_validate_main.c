@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 21:16:14 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 21:37:04 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ static	void		free_matrix(char ***s)
 	*s = NULL;
 }
 
+static	void		makematrix(char ***t, int n)
+{
+	int	i;
+
+	i = 0;
+	*t = (char**)malloc(sizeof(char*) * n);
+	while (i < n)
+		(*t)[i++] = NULL;
+}
+
 static	int			check_one(int fd, t_dlst **t)
 {
 	int		i;
@@ -46,12 +56,10 @@ static	int			check_one(int fd, t_dlst **t)
 	int		rd;
 
 	i = 0;
-	tetra = (char**)malloc(sizeof(char*) * 5);
-	tetra[4] = NULL;
+	makematrix(&tetra, 5);
 	while (i < 4)
 	{
 		rd = get_next_line(fd, &tetra[i]);
-		// printf("tetra[%i] = |%s|\n", i, tetra[i]);
 		if (rd <= 0 || !check_string(tetra[i]))
 		{
 			free_matrix(&tetra);
@@ -66,6 +74,13 @@ static	int			check_one(int fd, t_dlst **t)
 	{
 		free_matrix(&tetra);
 		return (-1);
+	}
+	i = 0;
+	while (i <= 4)
+	{
+		free(tetra[i]);
+		tetra[i] = NULL;
+		i++;
 	}
 	free_matrix(&tetra);
 	return (1);

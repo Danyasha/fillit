@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:26:43 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 16:51:28 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 21:50:18 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,19 @@ void two_fig_test()
 	print_map(head->next->tetra);
 	map = map_gen(head, 5);
 	tetra_place(map, head, 0, 0);
-	tetra_place(map, head->next, 6, 0);
+	tetra_place(map, head->next, 1, 0);
 	print_map(map->map);
+	ft_dlst_del_all(&head);
+	// int i = 0;
+	// while (map->map[i])
+	// {
+	// 	free(map->map[i]);
+	// 	map->map[i] = NULL;
+	// }
+	// free(map->map);
+	// map->map = NULL;
+	// free(map);
+	// map = NULL;
 	close(fd);
 }
 void	basic_test()
