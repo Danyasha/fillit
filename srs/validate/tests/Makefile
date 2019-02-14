@@ -6,7 +6,7 @@
 #    By: btorp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/10 16:47:44 by btorp             #+#    #+#              #
-#    Updated: 2019/02/11 22:10:34 by pcollio-         ###   ########.fr        #
+#    Updated: 2019/02/14 18:15:52 by btorp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ DLST = ../../dlst/*.c
 MAIN = ft_main_test.c
 SRS = ../*.c
 HEADERS = ../dlst/dlst.h ../../../libft/libft.h ../validate.h
-FLAGS = -Wall -Wextra -Werror
+FLAGS = 
 tetra:
 	gcc $(CHECKTETRA) $(LIB) $(TETRA) -I $(HEADERS) -g
 main:

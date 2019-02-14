@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:27:53 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 22:10:34 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/14 18:44:09 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static	t_dlst	*gen_tet(char **lines, t_coords **c, int prior)
 	(*c)->ydownr - (*c)->ytopl + 1, (*c)->xdownr - (*c)->xtopl + 1));
 }
 
-int				ft_add_tetra(char ***lines, t_dlst **list)
+int				ft_add_tetra(char **lines, t_dlst **list)
 {
 	t_tet		*tet;
 	t_coords	*coords;
@@ -131,10 +131,10 @@ int				ft_add_tetra(char ***lines, t_dlst **list)
 
 	tet = (t_tet*)malloc(sizeof(t_tet));
 	coords = (t_coords*)malloc(sizeof(t_coords));
-	find_firsts(*lines, tet);
-	find_seconds(*lines, tet);
+	find_firsts(lines, tet);
+	find_seconds(lines, tet);
 	tet_to_coords(&tet, coords);
-	temp = gen_tet(*lines, &coords, i);
+	temp = gen_tet(lines, &coords, i);
 	ft_dlst_add(list, temp);
 	free(coords);
 	coords = NULL;

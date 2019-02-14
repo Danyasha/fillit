@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:13:47 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 15:30:51 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 18:44:01 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef	struct	s_coords
 
 int		ft_check_tetra(char **tetra);
 t_dlst	*ft_validate_main(int fd);
-int		ft_add_tetra(char ***lines, t_dlst **list);
+int		ft_add_tetra(char **lines, t_dlst **list);
 void	ft_place_ints(int *d1, int *d2, int s1, int s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 18:02:02 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 21:16:14 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,71 +25,74 @@ static	int			check_string(char *line)
 	return (1);
 }
 
-// static	t_dlst		*returnandfree(char ***lines, t_dlst **t)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (*lines)
-// 	{
-// 		while ((*lines)[i])
-// 		{
-// 			free((*lines)[i]);
-// 			(*lines)[i] = NULL;
-// 			i++;
-// 		}
-// 		free(*lines);
-// 		*lines = NULL;
-// 	}
-// 	return (*t);
-// }
-
-static	char		**makearray(size_t t)
+static	void		free_matrix(char ***s)
 {
-	char	**s;
+	int	i;
 
-	s = (char**)malloc(sizeof(char*) * t);
-	s[t - 1] = NULL;
-	return (s);
+	i = 0;
+	while ((*s)[i])
+	{
+		free(*(s)[i]);
+		(*s)[i] = NULL;
+	}
+	free(*s);
+	*s = NULL;
 }
 
-static	void		shit(t_dlst **a, char ***b, int *c)
+static	int			check_one(int fd, t_dlst **t)
 {
-	*a = NULL;
-	*b = makearray(5);
-	*c = 0;
+	int		i;
+	char	**tetra;
+	int		rd;
+
+	i = 0;
+	tetra = (char**)malloc(sizeof(char*) * 5);
+	tetra[4] = NULL;
+	while (i < 4)
+	{
+		rd = get_next_line(fd, &tetra[i]);
+		// printf("tetra[%i] = |%s|\n", i, tetra[i]);
+		if (rd <= 0 || !check_string(tetra[i]))
+		{
+			free_matrix(&tetra);
+			return (-1);
+		}
+		i++;
+	}
+	rd = ft_check_tetra(tetra);
+	if (rd)
+		ft_add_tetra(tetra, t);
+	else
+	{
+		free_matrix(&tetra);
+		return (-1);
+	}
+	free_matrix(&tetra);
+	return (1);
 }
 
 t_dlst				*ft_validate_main(int fd)
 {
-	char	**lines;
-	char	*line;
-	t_dlst	*tetras;
-	int		i;
+	t_dlst	*head;
+	char	*buf;
+	int		rd;
 
-	shit(&tetras, &lines, &i);
-	while (get_next_line(fd, &line))
+	head = NULL;
+	while ((rd = check_one(fd, &head)))
 	{
-		if (check_string(line))
-			lines[i++] = line;
-		else
+		if (rd == -1)
 			return (NULL);
-		if (i == 4)
+		rd = get_next_line(fd, &buf);
+		if (rd == 0 && ft_strlen(buf))
 		{
-			if (ft_check_tetra(lines) && !(i = 0))
-				ft_add_tetra(&lines, &tetras);
-			else
-				return (NULL);
-			if (get_next_line(fd, &line) != 0 && line[0])
-				return (NULL);
-			for (int g = 0; g <= 3; g++)
-				free(lines[g]);
+			free(buf);
+			buf = NULL;
+			return (NULL);
 		}
+		if (!rd)
+			break ;
 	}
-	if (ft_dlst_find(tetras, 0) && !(ft_dlst_find(tetras, 26)) && line)
-	{
-		free(lines);
-		return (tetras);
-	}
-	return (NULL);
+	free(buf);
+	buf = NULL;
+	return (head);
 }
