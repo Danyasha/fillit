@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:28:42 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/13 22:01:54 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 16:50:18 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ static	int		clean_map(t_map *map, t_dlst *tet, int x, int y)
 
 	k = 0;
 	c = find_letter(tet);
-	while (k <= tet->height - 1 && map->map[k + y])
+	while (k < tet->height && map->map[k + y])
 	{
 		i = 0;
-		while (i <= tet->width - 1 && map->map[k][i])
+		while (i < tet->width && map->map[k][i])
 		{
-			if (map->map[k + y][i + x] != c)
+			if (map->map[k + y][i + x] == c)
 				map->map[k + y][i + x] = '.';
 			i++;
 		}
@@ -62,13 +62,15 @@ int				tetra_place(t_map *map, t_dlst *tet, int x, int y)
 	k = 0;
 	while (k < tet->height)
 	{
-		if (!(map->map[k + y]))
+		if (!(map->map[k + y + 1]))
 			return (clean_map(map, tet, x, y));
 		i = 0;
 		while (i < tet->width && i < map->n)
 		{
 			if (map->map[k + y][i + x] == '.')
 				map->map[k + y][i + x] = tet->tetra[k][i];
+			else if(tet->tetra[k][i] == '.')
+				;
 			else
 				return (clean_map(map, tet, x, y));
 			i++;

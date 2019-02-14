@@ -6,13 +6,13 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:40:13 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 22:02:35 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 17:05:10 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "backtraking.h"
 
-static	int	find_count(t_dlst *t)
+static	int		find_count(t_dlst *t)
 {
 	if (t == NULL)
 		return (0);
@@ -21,7 +21,7 @@ static	int	find_count(t_dlst *t)
 	return (t->priority + 1);
 }
 
-static	int	find_size_of_side(int s)
+static	int		find_size_of_side(int s)
 {
 	int	n;
 
@@ -31,7 +31,7 @@ static	int	find_size_of_side(int s)
 	return (n);
 }
 
-t_map		*map_gen(t_dlst *t, int size)
+t_map			*map_gen(t_dlst *t, int size)
 {
 	t_map	*map;
 	int		i;

@@ -6,11 +6,26 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:29:44 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/13 20:44:24 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 17:05:53 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../backtraking.h"
+void	map_free(t_map **map)
+{
+	int	i;
+
+	i = 0;
+	while((*map)->map[i])
+	{
+		free((*map)->map[i]);
+		i++;
+	}
+	free((*map)->map);
+	(*map)->map = NULL;
+	free(*map);
+	*map = NULL;
+}
 
 int	main(void)
 {
@@ -33,6 +48,7 @@ int	main(void)
 		printf("%s\n", map->map[i]);
 		i++;
 	}
+	map_free(&map);
 	map = map_gen(head, 3);
 	i = 0;
 	printf("map->n = %i\n", map->n);
@@ -41,5 +57,7 @@ int	main(void)
 		printf("%s\n", map->map[i]);
 		i++;
 	}
+	map_free(&map);
+	ft_dlst_del_all(&head);
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/12 14:41:21 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/14 17:38:20 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static	void		shit(t_dlst **a, char ***b, int *c)
 	*b = makearray(5);
 	*c = 0;
 }
-
 t_dlst				*ft_validate_main(int fd)
 {
 	char	**lines;
