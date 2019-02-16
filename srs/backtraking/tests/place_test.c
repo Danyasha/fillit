@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:26:43 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 21:55:01 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/16 17:11:41 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void two_fig_test()
 	head = ft_validate_main(fd);
 	print_map(head->tetra);
 	print_map(head->next->tetra);
-	map = map_gen(head, 5);
+	map = map_gen(4);
 	tetra_place(map, head, 0, 0);
 	tetra_place(map, head->next, 1, 0);
 	print_map(map->map);
@@ -55,7 +55,7 @@ void	basic_test()
 
 	fd = open("test.fillit", O_RDONLY);
 	head = ft_validate_main(fd);
-	map = map_gen(head, 3);
+	map = map_gen(3);
 	tetra_place(map, head, 1, 1);
 	print_map(map->map);
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:28:42 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 16:50:18 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/16 17:13:39 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				tetra_place(t_map *map, t_dlst *tet, int x, int y)
 	k = 0;
 	while (k < tet->height)
 	{
-		if (!(map->map[k + y + 1]))
+		if (!(map->map[k + y]))
 			return (clean_map(map, tet, x, y));
 		i = 0;
 		while (i < tet->width && i < map->n)

@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:29:44 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 17:05:53 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/16 15:49:01 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 		printf("INVALID FILE\n");
 		return (0);
 	}
-	map = map_gen(head, 0);
+	map = map_gen(4);
 	i = 0;
 	printf("map->n = %i\n", map->n);
 	while(map->map[i] != NULL)
@@ -49,7 +49,7 @@ int	main(void)
 		i++;
 	}
 	map_free(&map);
-	map = map_gen(head, 3);
+	map = map_gen(5);
 	i = 0;
 	printf("map->n = %i\n", map->n);
 	while(map->map[i] != NULL)
