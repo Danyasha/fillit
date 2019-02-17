@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:24:11 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/16 16:59:13 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/16 17:55:44 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static	int		find_count(t_dlst *t)
 	return (find_size_of_side((t->priority + 1) * 4));
 }
 
-static	void	map_write(t_map	**map)
+void	map_write(t_map	**map)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ static	void	map_write(t_map	**map)
 		write(1, "\n", 1);
 		i++;
 	}
-	map_del(map);
+	//map_del(map);
 }
 
 int		backtraking_main(t_dlst **head)
