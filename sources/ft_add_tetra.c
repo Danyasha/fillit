@@ -6,11 +6,11 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:27:53 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 18:44:09 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/16 19:58:27 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validate.h"
+#include "fillit.h"
 
 static	void	find_firsts(char **lines, t_tet *a)
 {

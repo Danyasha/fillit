@@ -6,9 +6,11 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:18:59 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/10 18:25:07 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/16 19:58:34 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
 
 int		checkpoint(char **tetra, int x, int y)
 {

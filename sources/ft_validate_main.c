@@ -6,11 +6,11 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 11:54:58 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 21:37:04 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/19 21:51:35 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validate.h"
+#include "fillit.h"
 
 static	int			check_string(char *line)
 {
@@ -25,21 +25,25 @@ static	int			check_string(char *line)
 	return (1);
 }
 
-static	void		free_matrix(char ***s)
+static	int			free_matrix(char ***s)
 {
-	int	i;
+	int		i;
+	char	**temp;
 
+	temp = *s;
 	i = 0;
-	while ((*s)[i])
+	while (temp[i])
 	{
-		free(*(s)[i]);
-		(*s)[i] = NULL;
+		free(temp[i]);
+		temp[i] = NULL;
+		i++;
 	}
 	free(*s);
 	*s = NULL;
+	return (1);
 }
 
-static	void		makematrix(char ***t, int n)
+static	int			makematrix(char ***t, int n)
 {
 	int	i;
 
@@ -47,6 +51,7 @@ static	void		makematrix(char ***t, int n)
 	*t = (char**)malloc(sizeof(char*) * n);
 	while (i < n)
 		(*t)[i++] = NULL;
+	return (1);
 }
 
 static	int			check_one(int fd, t_dlst **t)
@@ -70,18 +75,8 @@ static	int			check_one(int fd, t_dlst **t)
 	rd = ft_check_tetra(tetra);
 	if (rd)
 		ft_add_tetra(tetra, t);
-	else
-	{
-		free_matrix(&tetra);
+	else if (free_matrix(&tetra))
 		return (-1);
-	}
-	i = 0;
-	while (i <= 4)
-	{
-		free(tetra[i]);
-		tetra[i] = NULL;
-		i++;
-	}
 	free_matrix(&tetra);
 	return (1);
 }
@@ -96,18 +91,20 @@ t_dlst				*ft_validate_main(int fd)
 	while ((rd = check_one(fd, &head)))
 	{
 		if (rd == -1)
-			return (NULL);
+			return (ft_dlst_del_all(&head));
 		rd = get_next_line(fd, &buf);
-		if (rd == 0 && ft_strlen(buf))
+		if (rd != 0 && buf && buf[0] != '\0')
 		{
 			free(buf);
 			buf = NULL;
-			return (NULL);
+			return (ft_dlst_del_all(&head));
 		}
+		free(buf);
+		buf = NULL;
 		if (!rd)
 			break ;
 	}
-	free(buf);
-	buf = NULL;
+	if (ft_dlst_find(head, 26))
+		return (ft_dlst_del_all(&head));
 	return (head);
 }

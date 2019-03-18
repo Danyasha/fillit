@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_gen.c                                          :+:      :+:    :+:   */
+/*   ft_dlst_find.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 19:40:13 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/16 15:54:43 by btorp            ###   ########.fr       */
+/*   Created: 2019/02/05 08:02:52 by btorp             #+#    #+#             */
+/*   Updated: 2019/02/16 19:58:46 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "backtraking.h"
+#include "fillit.h"
 
-t_map			*map_gen(int size)
+t_dlst			*ft_dlst_find(t_dlst *elem, int priority)
 {
-	t_map	*map;
-	int		i;
-	int		k;
+	t_dlst	*temp;
 
-	i = size;
-	k = 0;
-	map = (t_map*)malloc(sizeof(t_map));
-	map->map = (char**)(malloc(sizeof(char*) * (i + 1)));
-	map->map[i] = NULL;
-	while(k < i)
-	{
-		map->map[k] = ft_strnew(i);
-		ft_memset(map->map[k], '.', i);
-		k++;
-	}
-	map->n = i;
-	return (map);
+	temp = elem;
+	while (temp->next != NULL && temp->priority != priority)
+		temp = temp->next;
+	if (temp->priority == priority)
+		return (temp);
+	else
+		return (NULL);
 }

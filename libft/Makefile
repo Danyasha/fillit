@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btorp <btorp@42.fr>                        +#+  +:+       +#+         #
+#    By: pcollio- <pcollio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/14 02:50:06 by btorp             #+#    #+#              #
-#    Updated: 2019/02/10 18:25:06 by pcollio-         ###   ########.fr        #
+#    Updated: 2019/02/19 22:10:34 by pcollio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ft_strtoupper.c ft_strreplacechr.c ft_findch.c ft_strjoinfree.c get_next_line.c
 OBJECT = $(SRC:%.c=%.o)
 
 FLAGS = -Wall -Wextra -Werror
-OPTIONS = -c -I libft.h get_next_line.h
+OPTIONS = -c -I libft.h
 
 all: $(NAME)
 	

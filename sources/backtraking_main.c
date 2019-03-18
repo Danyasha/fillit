@@ -6,11 +6,11 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:24:11 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/16 17:55:44 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/17 15:09:17 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "backtraking.h"
+#include "fillit.h"
 
 static	void	map_del(t_map **map)
 {
@@ -48,7 +48,7 @@ static	int		find_count(t_dlst *t)
 	return (find_size_of_side((t->priority + 1) * 4));
 }
 
-void	map_write(t_map	**map)
+static	void	map_write(t_map **map)
 {
 	int	i;
 
@@ -59,17 +59,17 @@ void	map_write(t_map	**map)
 		write(1, "\n", 1);
 		i++;
 	}
-	//map_del(map);
+	map_del(map);
 }
 
-int		backtraking_main(t_dlst **head)
+int				backtraking_main(t_dlst **head)
 {
 	t_map	*map;
 	int		size;
 
 	size = find_count(*head);
 	map = map_gen(size);
-	while(!find_sol(map, *head, 0, 0))
+	while (!find_sol(map, *head, 0, 0))
 	{
 		map_del(&map);
 		map = map_gen(size++);

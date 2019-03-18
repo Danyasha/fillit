@@ -6,11 +6,11 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 08:02:54 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/11 22:05:22 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/02/16 19:58:48 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "dlst.h"
+#include "fillit.h"
 
 static	void	replace(char **s, int prior)
 {

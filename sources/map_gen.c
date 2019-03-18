@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtraking.h                                      :+:      :+:    :+:   */
+/*   map_gen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 15:21:42 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/16 19:25:16 by btorp            ###   ########.fr       */
+/*   Created: 2019/02/12 19:40:13 by btorp             #+#    #+#             */
+/*   Updated: 2019/02/16 20:02:36 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BACKTRAKING_H
+#include "fillit.h"
 
-# define BACKTRAKING_H
-# include "../validate/validate.h"
-
-typedef	struct	s_map
+t_map			*map_gen(int size)
 {
-	char			**map;
-	int				n;
-}				t_map;
+	t_map	*map;
+	int		i;
+	int		k;
 
-int		backtraking_main(t_dlst **head);
-t_map	*find_sol(t_map *map, t_dlst *temp, int x, int y);
-t_map	*map_gen(int size);
-int		tetra_place(t_map *map, t_dlst *tet, int x, int y);
-int		tetra_del(t_map *map, t_dlst *tet);
-void	map_write(t_map	**map);
-#endif
+	i = size;
+	k = 0;
+	map = (t_map*)malloc(sizeof(t_map));
+	map->map = (char**)(malloc(sizeof(char*) * (i + 1)));
+	map->map[i] = NULL;
+	while (k < i)
+	{
+		map->map[k] = ft_strnew(i);
+		ft_memset(map->map[k], '.', i);
+		k++;
+	}
+	map->n = i;
+	return (map);
+}

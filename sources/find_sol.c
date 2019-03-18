@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   find_sol.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btorp <btorp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcollio- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:24:12 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/17 14:29:16 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/19 22:16:07 by pcollio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "backtraking.h"
+#include "fillit.h"
 
 static	char	find_letter(t_dlst *tet)
 {
@@ -54,18 +54,20 @@ static	void	clean_board(t_map *map, t_dlst *temp, int x, int y)
 	}
 }
 
-static	int		findx(t_map *map, int *i, int *g)
+static	int		findxy(t_map *map, t_dlst *tet, int *i, int *g)
 {
 	int	x;
 	int	y;
+	int	n;
 
+	n = map->n;
 	y = 0;
-	while (y < map->n)
+	while (y < n)
 	{
 		x = 0;
-		while (x < map->n)
+		while (x < n)
 		{
-			if (map->map[y][x] == '.')
+			if (map->map[y][x] == '.' || tet->tetra[0][0] == '.')
 			{
 				*i = x;
 				*g = y;
@@ -78,45 +80,22 @@ static	int		findx(t_map *map, int *i, int *g)
 	return (0);
 }
 
-// static	int		findy(t_map *map)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	y = 0;
-// 	while (y < map->n)
-// 	{
-// 		x = 0;
-// 		while (x < map->n)
-// 		{
-// 			if (map->map[y][x] == '.')
-// 				return (y);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	return (-1);
-// }
-
 t_map			*find_sol(t_map *map, t_dlst *temp, int x, int y)
 {
 	int		i;
 	int		g;
 	t_map	*t;
-	
+
 	g = 0;
 	if (tetra_place(map, temp, x, y))
 	{
 		if (temp->next == NULL)
 			return (map);
-		if(!findx(map, &i, &g))
+		if (!findxy(map, temp->next, &i, &g))
 			return (NULL);
-		// if (i == -1)
-		// 	return (NULL);
-		// g = findy(map);
 		t = find_sol(map, temp->next, i, g);
 		if (t)
-			return(t);
+			return (t);
 	}
 	clean_board(map, temp, x, y);
 	if (x == map->n - 1 && !(x == map->n - 1 && y == map->n - 1))

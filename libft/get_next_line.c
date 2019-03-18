@@ -6,7 +6,7 @@
 /*   By: btorp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 03:36:50 by btorp             #+#    #+#             */
-/*   Updated: 2019/02/14 18:37:50 by btorp            ###   ########.fr       */
+/*   Updated: 2019/02/17 19:10:26 by btorp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static	char		*gnlgetn(char **g)
 	i = 0;
 	while (s[i] != '\n' && s[i] != '\0')
 		i++;
+	if (s[i] == '\0')
+	{
+		free(*g);
+		*g = NULL;
+		return (NULL);
+	}
 	temp = ft_strnew(i);
 	temp = ft_strncpy(temp, s, i);
 	temp2 = ft_strnew(ft_strlen(&(s[i + 1])));
@@ -34,30 +40,28 @@ static	char		*gnlgetn(char **g)
 
 int					get_next_line(const int fd, char **line)
 {
-	static	char	*anime[120];
+	static	char	*anime;
 	char			buff[BUFF_SIZE + 1];
 	int				check;
 
 	if ((read(fd, buff, 0) < 0) || line == NULL)
 		return (-1);
-	while (ft_findch(anime[fd], '\n') == 0)
+	while (ft_findch(anime, '\n') == 0)
 	{
 		check = read(fd, buff, BUFF_SIZE);
 		buff[check] = '\0';
 		if (check <= 0)
 			break ;
-		anime[fd] = ft_strjoinfree(anime[fd], buff);
+		anime = ft_strjoinfree(anime, buff);
 	}
-	if (ft_strlen(anime[fd]) || check > 0)
+	if (ft_strlen(anime) || check > 0)
 	{
-		*line = gnlgetn(&anime[fd]);
+		*line = gnlgetn(&anime);
+		if (line == NULL)
+			return (0);
 		return (1);
 	}
-	if (anime[fd])
-	{
-		free(anime[fd]);
-		anime[fd] = NULL;
-	}
+	if (anime)
+		ft_memdel((void*)&anime);
 	return (0);
 }
-
